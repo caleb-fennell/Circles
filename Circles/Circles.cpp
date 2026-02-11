@@ -25,11 +25,11 @@ int main()
 		/*
 		* The main loop is very simple
 		*   -- First clear the window and fill it with black for a background
-		*   -- Then draw all the images (circles here) on the screen. -- THIS 
-		*      DOES NOT draw on the screen. It draws on the window, which 
-		*      is not yet displayed. 
-		*   -- after you have drawn on the window, display this window. 
-		* In this way you can animate things later. 
+		*   -- Then draw all the images (circles here) on the screen. -- THIS
+		*      DOES NOT draw on the screen. It draws on the window, which
+		*      is not yet displayed.
+		*   -- after you have drawn on the window, display this window.
+		* In this way you can animate things later.
 		*/
 		window.clear(Color::Black);
 
@@ -40,7 +40,16 @@ int main()
 		CircleShape c2 = makeCircle(10, 600, 400);
 
 		window.draw(c1); // c1 is a circle, draw it into the window
-		window.draw(c2); // c2 is a different circle.   
+		window.draw(c2); // c2 is a different circle.
+
+		float circleLocation = 100;
+		float circleAray[20];
+
+		for (int i = 0; i < 20; i++) {
+			CircleShape circles = makeCircle((circleLocation), static_cast<float>(250 + (i * 5)), static_cast<float>(250 + (i * 5)));
+			window.draw(circles);
+			circleLocation -= 5;
+		}
 
 		// end the current frame; put everything on the screen
 		window.display();
