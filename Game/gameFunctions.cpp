@@ -40,6 +40,9 @@ void moveShip(Sprite& ship)
 	else if (Keyboard::isKeyPressed(Keyboard::Key::Up)) {
 		ship.move({ 0.0, -DISTANCE });
 	}
+	else if (Keyboard::isKeyPressed(Keyboard::Key::Down)) {
+		ship.move({ 0.0, +DISTANCE });
+	}
 
 	// *** add code (more if/else blocks) to move ship up/down
 

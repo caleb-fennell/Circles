@@ -55,7 +55,16 @@ int main()
 
 	// *** You will have to code to load the  texture for the missile here. 
 	// Then create the missile Sprite. See how the ship was created above to make this work.
-	bool isMissileInFlight = false; // used to know if a missile is 'on screen'. 
+	bool isMissileInFlight = false; // used to know if a missile is 'on screen'.
+	Texture missileTexture;
+	if (!missileTexture.loadFromFile("missile.png"))
+	{
+		cout << "Unable to load missile texture!" << endl;
+		exit(EXIT_FAILURE);
+	}
+
+	Sprite missile(missileTexture);
+	background.setScale({ 3.0, 3.0 });
 
 	/*
 	 *    MAIN GAME LOOP BELOW
@@ -99,6 +108,10 @@ int main()
 					//     moving it positive distance in the x direction and 
 					//     moving it negative position in the y direction (up)
 					//  missile.move({10, -10}); 
+					Vector2f missileLocation = ship.getPosition();
+					missile.setPosition(missileLocation);
+					missile.move({ 12, -10 });
+					
 
 					// set the missile boolean to be TRUE!
 					isMissileInFlight = true;
@@ -127,19 +140,21 @@ int main()
 
 		if (isMissileInFlight)
 		{   
-			
+			window.draw(missile);
 			// move it "up" the screen by decreasing 'y' using missile.move({deltax, deltay});
 			// in later work you will check to see if the missile hit anything.
 			// Don't forget to draw the missile in its new position in the if statement below 
-
+			missile.move({ 0, -10 });
 			// Don't forget to see if the missile is off screen!
 			//     You can check the Y position of the missile like this:
 			//         if (missile.getposition().y ....) {
 			// if it's moved off the top, set the boolean to false!
 			// if the missile has not gone off the top of the screen, draw it!
 			// this is the default now, but the statement below should be inside an if block.
-			isMissileInFlight = false; 
-				
+			
+			if (missile.getPosition().y < 0) {
+				isMissileInFlight = false;
+			}
 		}
 
 		// end the current frame; this makes everything that we have 
