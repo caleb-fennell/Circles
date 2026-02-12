@@ -64,7 +64,7 @@ int main()
 	}
 
 	Sprite missile(missileTexture);
-	background.setScale({ 3.0, 3.0 });
+	missile.setScale({ 1.5, 1.5 });
 
 	/*
 	 *    MAIN GAME LOOP BELOW
